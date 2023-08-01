@@ -1,4 +1,20 @@
-def encrypt(tex):
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from flask import jsonify
+
+
+##### HAK AKSES #####
+@jwt_required()
+# akses bookkeeping
+def Access():
+    user_id = get_jwt_identity()
+
+    if not user_id:
+        return False
+    return True
+
+##### ENKRIPSI #####
+
+def Encrypt(tex):
     text = str(tex)
     key = "khvIUyiYVIUUCTCVKgy88yJGIUgdbaduGIbjkdfbKKbiuei383H"
     result = ""
@@ -18,7 +34,7 @@ def encrypt(tex):
     return result
 
 
-def decrypt(tex):
+def Decrypt(tex):
     text = str(tex)
     key = "khvIUyiYVIUUCTCVKgy88yJGIUgdbaduGIbjkdfbKKbiuei383H"
     result = ""
